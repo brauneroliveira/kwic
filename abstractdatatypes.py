@@ -1,5 +1,6 @@
 from sys import stdout
 
+# Input Module
 def kwic_input(path):
     
     file = open(path, 'r')
@@ -7,11 +8,11 @@ def kwic_input(path):
     file.close()
     return file_contents.replace(',','').split()
 
+# Circular Shift Module
 def kwic_circular_shift(input_list):
     
     list_of_shifts = []
     list_of_shifts.append(input_list.copy())
-    
     i = 0
 
     while i < len(input_list)-1:
@@ -21,13 +22,15 @@ def kwic_circular_shift(input_list):
         i += 1
         
     return list_of_shifts
-        
+       
+# Alphabetizer Module 
 def kwic_alphabetizer(list_of_shifts):
     
     list_of_shifts.sort()
     
     return list_of_shifts
 
+# Output Module
 def kwic_output(ordered_list_of_shifts):
     
     for l in ordered_list_of_shifts:
@@ -35,10 +38,8 @@ def kwic_output(ordered_list_of_shifts):
             stdout.write(w+' ')
         stdout.write('\n')
         
+# Main Control
 characters = kwic_input('poema.txt')
-
 index = kwic_circular_shift(characters)
-
 alphabetized_index = kwic_alphabetizer(index)
-
 kwic_output(alphabetized_index)
